@@ -1,17 +1,17 @@
 # Bubble sort implementation for O(n^2)
-def sort(array):
+def sort(lists):
     '''
     Takes a list of items and returns the sorted list using bubble sort
     Bubble sort works by moving the bigger items to the end of the list
     
     Parameters
     -----------
-    array : list
+    lists : list
         A list of items that needs sorting
         
     Returns
     -----------
-    array : list
+    lists : list
         A sorted list of items
     compares : int
         The number of times the if sentence was true,
@@ -23,12 +23,12 @@ def sort(array):
     compares = 0
     swaps = 0
 
-    n = len(array)
+    n = len(lists)
     for i in range(n-1):
         for j in range(n-i-1):
-            if array[j] > array[j+1]:
+            if lists[j] > lists[j+1]:
                 compares += 1
-                array[j],array[j+1] = array[j+1],array[j]
+                lists[j], lists[j+1] = lists[j+1], lists[j]
                 swaps += 1
 
-    return array, compares, swaps
+    return lists, compares, swaps

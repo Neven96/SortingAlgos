@@ -1,17 +1,17 @@
 # Insertion sort implementation for O(n^2)
-def sort(array):
+def sort(lists):
     '''
     Takes a list of items and sorts them using insertion sort
     Insertion sort by moving the smaller item towards the front of the list
     
     Parameters
     -----------
-    array : list
+    lists : list
         A list of items that needs sorting
         
     Returns
     -----------
-    array : list
+    lists : list
         A sorted list of items
     compares : int
         The number of compares done,
@@ -23,13 +23,13 @@ def sort(array):
     compares = 0
     swaps = 0
     
-    for i in range(1, len(array)):
+    for i in range(1, len(lists)):
 
         j = i
-        while j > 0 and array[j-1] > array[j]:
+        while j > 0 and lists[j-1] > lists[j]:
             compares += 1
-            array[j-1],array[j] = array[j],array[j-1]
+            lists[j-1], lists[j] = lists[j], lists[j-1]
             swaps += 1
             j -= 1
             
-    return array, compares, swaps
+    return lists, compares, swaps

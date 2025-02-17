@@ -13,18 +13,18 @@ def swap(swaps):
     swaps += 1
     return swaps
 
-def sort(array):
+def sort(lists):
     '''
     Main function for merge sort
     
     Parameters
     -----------
-    array : list
+    lists : list
         A list of items that needs to be sorted
     
     Returns
     -----------
-    array : list
+    lists : list
         A sorted list of items
     compares : int
         The number of compares done,
@@ -35,12 +35,12 @@ def sort(array):
     
     global compares
     global swaps
-    mergesort(array)
+    mergesort(lists)
     
-    return array, compares, swaps
+    return lists, compares, swaps
 
 # Merge sort implementation for O(n*log(n))
-def mergesort(array):
+def mergesort(lists):
     '''
     The function for splitting the list into multiple smaller lists by using
     recursion, then when the lists contains 1 or 0 items, which is sorted,
@@ -48,47 +48,47 @@ def mergesort(array):
     
     Parameters
     -----------
-    array : list
+    lists : list
         At the starts it is the full list, but as the recursion continues it is
         lists of various sizes
     
     Returns
     -----------
-    array : list
+    lists : list
         Returns the merge() function, which in turn returns a list
     '''
     
     global compares
     global swaps
     
-    n = len(array)
+    n = len(lists)
     if n <= 1:
         compares = compares + 1
-        return array
+        return lists
         
     i = math.floor(n/2)
-    array1 = mergesort(array[0:i])
-    array2 = mergesort(array[i:n])
+    list1 = mergesort(lists[0:i])
+    list2 = mergesort(lists[i:n])
 
-    return merge(array1, array2, array)
+    return merge(list1, list2, lists)
 
-def merge(array1, array2, array):
+def merge(list1, list2, lists):
     '''
     Takes in the smaller list and adds them to the third list,
     gradually merging them together to form a fully sorted list
     
     Parameters
     -----------
-    array1 : list
+    list1 : list
         One of the smaller lists
-    array2 : list
+    list2 : list
         Another of the smaller lists
-    array : list
+    lists : list
         The after a while fully sorted list
         
     Returns
     -----------
-    array : list
+    lists : list
         The gradually more sorted list,
         eventually fully sorted list
     '''
@@ -97,32 +97,32 @@ def merge(array1, array2, array):
     
     i = 0
     j = 0
-    a1 = len(array1)
-    a2 = len(array2)
+    a1 = len(list1)
+    a2 = len(list2)
 
     while i < a1 and j < a2:
         compares = compares + 1
-        if array1[i] < array2[j]:
+        if list1[i] < list2[j]:
             compares = compares + 1
-            array[i+j] = array1[i]
+            lists[i+j] = list1[i]
             swaps = swaps + 1
             i += 1
         else:
             compares = compares + 1
-            array[i+j] = array2[j]
+            lists[i+j] = list2[j]
             swaps = swaps + 1
             j += 1
 
     while i < a1:
         compares = compares + 1
-        array[i+j] = array1[i]
+        lists[i+j] = list1[i]
         swaps = swaps + 1
         i += 1
 
     while j < a2:
         compares = compares + 1
-        array[i+j] = array2[j]
+        lists[i+j] = list2[j]
         swaps = swaps + 1
         j += 1
 
-    return array
+    return lists

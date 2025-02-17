@@ -5,18 +5,18 @@ import math
 compares = 0
 swaps = 0
 
-def sort(array):
+def sort(lists):
     '''
     Main function for quick sort
     
     Parameters
     -----------
-    array : list
+    lists : list
         A list of items that needs to be sorted
     
     Returns
     -----------
-    array : list
+    lists : list
         A sorted list of items
     compares : int
         The number of compares done,
@@ -28,19 +28,20 @@ def sort(array):
     global compares
     global swaps
     
-    quicksort(array, 0, len(array)-1)
+    lists = quicksort(lists, 0, len(lists)-1)
     
-    return array, compares, swaps
+    return lists, compares, swaps
 
 # Quick sort implementation for O(n*log(n))
-def quicksort(array, low, high):
+
+def quicksort(lists, low, high):
     '''
     Recursive function for partitioning the list into smaller lists,
     runs until each partition has either 1 or 0 items
     
     Parameters
     -----------
-    array : list
+    lists : list
         A list of items, 
     low : int
         The lower poisition of the pivot point
@@ -50,7 +51,7 @@ def quicksort(array, low, high):
         
     Returns
     -----------
-    array : list
+    list : list
         The gradually more sorted list
     '''
     
@@ -59,22 +60,22 @@ def quicksort(array, low, high):
     
     if low >= high:
         compares = compares + 1
-        return array
+        return lists
         
-    p = partition(array, low, high)
+    p = partition(lists, low, high)
     
-    quicksort(array, low, p-1)
-    quicksort(array, p+1, high)
+    quicksort(lists, low, p-1)
+    quicksort(lists, p+1, high)
     
-    return array
+    return lists
 
-def partition(array, low, high):
+def partition(lists, low, high):
     '''
     Function to set the pivot point and to sort the list
     
     Parameters
     -----------
-    array : list
+    lists : list
         The list of items to be partitioned/sorted
     low : int
         The lower poisition of the pivot point
@@ -92,10 +93,10 @@ def partition(array, low, high):
     global swaps
     
     p = math.floor((low+high)/2) # Pivot point chosen after long and thoughtful decision process
-    array[p],array[high] = array[high],array[p]
+    lists[p], lists[high] = lists[high], lists[p]
     swaps = swaps + 1
     
-    pivot = array[high]
+    pivot = lists[high]
     
     left = low
     right = high-1
@@ -103,20 +104,20 @@ def partition(array, low, high):
     while left <= right:
         compares = compares + 1
         
-        while left <= right and array[left] <= pivot:
+        while left <= right and lists[left] <= pivot:
             compares = compares + 1
             left += 1
             
-        while right >= left and array[right] >= pivot:
+        while right >= left and lists[right] >= pivot:
             compares = compares + 1
             right -= 1
             
         if left < right:
             compares = compares + 1
-            array[left],array[right] = array[right],array[left]
+            lists[left], lists[right] = lists[right], lists[left]
             swaps = swaps + 1
 
-    array[left],array[high] = array[high],array[left]
+    lists[left], lists[high] = lists[high], lists[left]
     swaps = swaps + 1
     
     return left
