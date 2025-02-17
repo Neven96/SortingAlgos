@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>StalinSort</title>
+    <style media="screen">
+      table {
+        table-layout: fixed;
+        width: 100%;
+      }
+      table td {
+        width: 50%;
+        word-wrap: break-word;
+      }
+    </style>
+    <script src="RandomArrayGen.js" charset="utf-8"></script>
+    <script src="StalinSort.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded",domloaded,false);
+      function domloaded() {
+        let unsorted_array = [];
+        let sorted_array = [];
+        document.getElementById("sort").disabled = true;
+
+        document.getElementById("unsort").onclick = function() {
+          unsorted_array = createArray(100, 100);
+          document.getElementById("unsortedArray").textContent = unsorted_array;
+          document.getElementById("sort").removeAttribute("disabled");
+        }
+        document.getElementById("sort").onclick = function() {
+          sorted_array = stalinSort(unsorted_array);
+          document.getElementById("sortedArray").textContent = sorted_array;
+        }
+        document.getElementById("reset").onclick = function() {
+          document.getElementById("unsortedArray").textContent = "";
+          document.getElementById("sortedArray").textContent = "";
+          document.getElementById("sort").disabled = true;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="main">
+      <table>
+        <thead>
+          <tr>
+            <th>Unsorted array</th>
+            <th>Sorted array</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="unsortedArray"></td>
+            <td id="sortedArray"></td>
+          </tr>
+          <tr>
+            <td>
+              <button type="button" name="unsort" id="unsort">Create unsorted array</button>
+            </td>
+            <td>
+              <button type="button" name="sort" id="sort" disabled>Sort array</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button type="button" name="button" id="reset">Reset</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
